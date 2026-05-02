@@ -58,7 +58,7 @@ export function Pricing() {
               </h2>
             </div>
 
-            <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1 self-start">
+            <div className="flex items-center gap-1 rounded-lg bg-neutral-900 p-1 self-start">
               <button
                 type="button"
                 onClick={() => setAnnual(false)}
@@ -92,10 +92,10 @@ export function Pricing() {
           {plans.map((plan, i) => (
             <ScrollAnimate key={plan.name} delay={i * 100}>
               <div
-                className={`relative rounded-2xl border p-6 sm:p-8 transition-all ${
+                className={`relative rounded-2xl p-6 sm:p-8 transition-all ${
                   plan.featured
-                    ? "border-blue-accent/40 bg-blue-accent/[0.04] shadow-xl shadow-blue-accent/5"
-                    : "border-white/5 bg-white/[0.02] hover:border-white/10"
+                    ? "bg-blue-accent/[0.06] ring-1 ring-blue-accent/40"
+                    : "bg-neutral-900 hover:bg-neutral-800/80"
                 }`}
               >
                 {plan.featured && (
@@ -129,8 +129,8 @@ export function Pricing() {
                   href="#contact"
                   className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold transition-all active:scale-[0.97] ${
                     plan.featured
-                      ? "bg-blue-accent text-white hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-accent/25"
-                      : "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                      ? "bg-blue-accent text-white hover:bg-blue-500"
+                      : "bg-neutral-800 text-white hover:bg-neutral-700"
                   }`}
                 >
                   Get Started

@@ -37,17 +37,23 @@ const navGroups = [
   {
     title: "Gym",
     links: [
+      { label: "Home", href: "#" },
       { label: "About", href: "#about" },
       { label: "Classes", href: "#classes" },
       { label: "Trainers", href: "#trainers" },
-      { label: "Pricing", href: "#pricing" },
     ],
   },
   {
-    title: "Support",
+    title: "Resources",
     links: [
+      { label: "Pricing", href: "#pricing" },
       { label: "Contact", href: "#contact" },
       { label: "FAQ", href: "#contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
@@ -56,24 +62,23 @@ const navGroups = [
 
 const socials = [
   { icon: IconInstagram, href: "#", label: "Instagram" },
-  { icon: IconX, href: "#", label: "X (Twitter)" },
+  { icon: IconX, href: "#", label: "X" },
   { icon: IconYoutube, href: "#", label: "YouTube" },
   { icon: IconFacebook, href: "#", label: "Facebook" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-neutral-950">
+    <footer className="border-t border-neutral-800 bg-neutral-950">
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <a href="#" className="font-heading text-xl font-bold tracking-tight">
               Power<span className="text-blue-accent">Fit</span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-neutral-500">
               World-class fitness facility in the heart of New York. Premium
-              equipment, expert trainers, and a community that pushes you to be
-              your best.
+              equipment, expert trainers, and a community built on results.
             </p>
             <div className="mt-6 flex gap-3">
               {socials.map((s) => (
@@ -81,9 +86,9 @@ export function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/5 bg-white/[0.02] text-neutral-500 transition-all hover:border-blue-accent/20 hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-900 text-neutral-500 transition-all hover:bg-neutral-800 hover:text-white"
                 >
-                  <s.icon size={18} />
+                  <s.icon size={16} />
                 </a>
               ))}
             </div>
@@ -110,7 +115,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-white/5 pt-8 text-center text-sm text-neutral-600">
+        <div className="mt-12 border-t border-neutral-800 pt-8 text-center text-sm text-neutral-600">
           &copy; {new Date().getFullYear()} PowerFit. All rights reserved.
         </div>
       </div>

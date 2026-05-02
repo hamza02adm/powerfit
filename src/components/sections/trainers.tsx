@@ -55,10 +55,10 @@ export function Trainers() {
           </div>
         </ScrollAnimate>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+        <div className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
           {trainers.map((trainer, i) => (
             <ScrollAnimate key={trainer.name} delay={i * 80}>
-              <div className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:border-blue-accent/20">
+              <div className="group relative overflow-hidden rounded-2xl bg-neutral-900 transition-all hover:bg-neutral-800">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={trainer.image}
@@ -67,14 +67,14 @@ export function Trainers() {
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                <div className="relative -mt-16 p-4 sm:p-5">
                   <p className="text-xs font-semibold uppercase tracking-wider text-blue-accent">
                     {trainer.name}
                   </p>
                   <p className="mt-0.5 text-sm font-bold font-heading">{trainer.specialty}</p>
-                  <p className="mt-1.5 text-xs text-neutral-400 leading-relaxed line-clamp-2">
+                  <p className="mt-1.5 text-xs text-neutral-500 leading-relaxed line-clamp-2">
                     {trainer.description}
                   </p>
                 </div>

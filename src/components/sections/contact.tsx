@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { MapPin, Clock, Phone, Send, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
+import { MapPin, Clock, Phone, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -51,7 +51,7 @@ export function Contact() {
           </div>
         </ScrollAnimate>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12">
+        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-12">
           <ScrollAnimate>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="hidden">
@@ -64,14 +64,14 @@ export function Contact() {
                   type="text"
                   required
                   placeholder="Your Name"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
+                  className="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-accent/50"
                 />
                 <input
                   name="email"
                   type="email"
                   required
                   placeholder="Your Email"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
+                  className="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-accent/50"
                 />
               </div>
 
@@ -80,18 +80,16 @@ export function Contact() {
                 required
                 rows={5}
                 placeholder="Your Message"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent resize-none"
+                className="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-accent/50 resize-none"
               />
 
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="inline-flex items-center gap-2 rounded-lg bg-blue-accent px-7 py-3 text-sm font-semibold text-white uppercase tracking-wide transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-accent/25 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-accent px-7 py-3 text-sm font-semibold text-white uppercase tracking-wide transition-all hover:bg-blue-500 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === "sending" && <Loader2 size={16} className="animate-spin" />}
                 {status === "sent" && <CheckCircle2 size={16} />}
-                {status === "idle" && <Send size={16} />}
-                {status === "error" && <Send size={16} />}
                 {status === "sending"
                   ? "Sending..."
                   : status === "sent"
@@ -99,69 +97,64 @@ export function Contact() {
                     : status === "error"
                       ? "Try Again"
                       : "Send Message"}
-                {(status === "idle" || status === "error") && (
-                  <ArrowRight size={14} />
-                )}
+                {(status === "idle" || status === "error") && <ArrowRight size={14} />}
               </button>
 
               {status === "error" && (
                 <p className="text-sm text-red-400">
-                  Something went wrong. Please try again or email us directly.
+                  Something went wrong. Please try again.
                 </p>
               )}
             </form>
           </ScrollAnimate>
 
           <ScrollAnimate delay={100}>
-            <div className="space-y-5">
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-                  <div className="flex items-start gap-3">
-                    <MapPin size={18} className="mt-0.5 shrink-0 text-blue-accent" />
-                    <div>
-                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Address</h3>
-                      <p className="mt-1.5 text-sm text-neutral-400 leading-relaxed">
-                        123 PowerFit Way<br />New York, NY 10001
-                      </p>
-                    </div>
+            <div className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="rounded-xl bg-neutral-900 p-5">
+                  <MapPin size={18} className="text-blue-accent" />
+                  <h3 className="mt-3 text-xs font-bold text-blue-accent uppercase tracking-wider">
+                    Address
+                  </h3>
+                  <p className="mt-2 text-sm text-neutral-400 leading-relaxed">
+                    123 PowerFit Way
+                    <br />
+                    New York, NY 10001
+                  </p>
+                </div>
+
+                <div className="rounded-xl bg-neutral-900 p-5">
+                  <Clock size={18} className="text-blue-accent" />
+                  <h3 className="mt-3 text-xs font-bold text-blue-accent uppercase tracking-wider">
+                    Hours
+                  </h3>
+                  <div className="mt-2 space-y-0.5 text-sm text-neutral-400">
+                    <p>Mon–Fri 5am–10pm</p>
+                    <p>Sat–Sun 7am–8pm</p>
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-                  <div className="flex items-start gap-3">
-                    <Clock size={18} className="mt-0.5 shrink-0 text-blue-accent" />
-                    <div>
-                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Hours</h3>
-                      <div className="mt-1.5 space-y-0.5 text-sm text-neutral-400">
-                        <p>Mon – Fri: 5:00 AM – 10:00 PM</p>
-                        <p>Sat – Sun: 7:00 AM – 8:00 PM</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5 sm:col-span-2 lg:col-span-1 xl:col-span-2">
-                  <div className="flex items-start gap-3">
-                    <Phone size={18} className="mt-0.5 shrink-0 text-blue-accent" />
-                    <div>
-                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Phone</h3>
-                      <a
-                        href="tel:+12125550123"
-                        className="mt-1.5 block text-sm text-neutral-400 transition-colors hover:text-white"
-                      >
-                        (212) 555-0123
-                      </a>
-                    </div>
-                  </div>
+                <div className="rounded-xl bg-neutral-900 p-5">
+                  <Phone size={18} className="text-blue-accent" />
+                  <h3 className="mt-3 text-xs font-bold text-blue-accent uppercase tracking-wider">
+                    Phone
+                  </h3>
+                  <a
+                    href="tel:+12125550123"
+                    className="mt-2 block text-sm text-neutral-400 transition-colors hover:text-white"
+                  >
+                    (212) 555-0123
+                  </a>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl aspect-[16/9]">
+              <div className="relative overflow-hidden rounded-2xl">
                 <Image
                   src="/images/gym-interior.png"
                   alt="PowerFit gym interior"
-                  fill
-                  className="object-cover"
+                  width={1280}
+                  height={256}
+                  className="w-full object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>

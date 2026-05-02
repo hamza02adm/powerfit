@@ -1,36 +1,42 @@
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { Dumbbell, Flame, Swords, Leaf, HeartPulse, UserRound, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const classes = [
   {
-    icon: Dumbbell,
+    emoji: "🏋️",
     name: "Weightlifting",
     description: "Build strength and muscle with focused lifting programs.",
+    color: "from-blue-500/20 to-blue-600/5",
   },
   {
-    icon: Flame,
+    emoji: "🔥",
     name: "CrossFit",
     description: "High-intensity functional workouts for all levels.",
+    color: "from-orange-500/20 to-orange-600/5",
   },
   {
-    icon: Swords,
+    emoji: "🥊",
     name: "Boxing",
     description: "Improve technique, strength, and confidence.",
+    color: "from-red-500/20 to-red-600/5",
   },
   {
-    icon: Leaf,
+    emoji: "🧘",
     name: "Yoga",
     description: "Increase flexibility, reduce stress, and find balance.",
+    color: "from-emerald-500/20 to-emerald-600/5",
   },
   {
-    icon: HeartPulse,
+    emoji: "💪",
     name: "Cardio",
     description: "Boost endurance with exciting cardio sessions.",
+    color: "from-violet-500/20 to-violet-600/5",
   },
   {
-    icon: UserRound,
+    emoji: "🎯",
     name: "Personal Training",
     description: "One-on-one coaching tailored to your goals.",
+    color: "from-cyan-500/20 to-cyan-600/5",
   },
 ];
 
@@ -63,9 +69,11 @@ export function Classes() {
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 sm:gap-4">
           {classes.map((cls, i) => (
             <ScrollAnimate key={cls.name} delay={i * 60}>
-              <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-blue-accent/20 hover:bg-white/[0.04] sm:p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-accent/10 text-blue-accent transition-colors group-hover:bg-blue-accent/20">
-                  <cls.icon size={24} />
+              <div className="group cursor-pointer rounded-2xl bg-neutral-900 p-5 transition-all hover:bg-neutral-800 sm:p-6">
+                <div
+                  className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${cls.color} text-2xl`}
+                >
+                  {cls.emoji}
                 </div>
                 <h3 className="mt-4 text-sm font-bold font-heading sm:text-base">
                   {cls.name}
@@ -76,7 +84,7 @@ export function Classes() {
                 <div className="mt-4">
                   <ArrowRight
                     size={16}
-                    className="text-blue-accent opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1"
+                    className="text-blue-accent transition-all group-hover:translate-x-1"
                   />
                 </div>
               </div>

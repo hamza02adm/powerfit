@@ -1,5 +1,5 @@
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -15,7 +15,7 @@ const testimonials = [
   {
     name: "James T.",
     quote:
-      'Personal training here took my fitness to the next level. Highly recommend PowerFit!',
+      "Personal training here took my fitness to the next level. Highly recommend PowerFit!",
   },
 ];
 
@@ -48,12 +48,14 @@ export function Testimonials() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
             <ScrollAnimate key={t.name} delay={i * 100}>
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 sm:p-8 transition-all hover:border-blue-accent/20 hover:bg-white/[0.04]">
-                <Quote size={28} className="text-blue-accent/30" />
-                <blockquote className="mt-4 text-neutral-300 leading-relaxed">
+              <div className="rounded-2xl bg-neutral-900 p-6 sm:p-8 transition-all hover:bg-neutral-800/80">
+                <div className="text-4xl font-heading text-blue-accent/20 leading-none select-none">
+                  &ldquo;&ldquo;
+                </div>
+                <blockquote className="mt-2 text-neutral-300 leading-relaxed">
                   {t.quote}
                 </blockquote>
-                <p className="mt-6 text-sm text-neutral-500">— {t.name}</p>
+                <p className="mt-6 text-sm font-medium text-neutral-500">— {t.name}</p>
               </div>
             </ScrollAnimate>
           ))}
