@@ -1,144 +1,122 @@
 "use client";
 
-import { useState } from "react";
-import { ScrollAnimate } from "@/components/ui/scroll-animate";
+import { FadeUp } from "@/components/ui/motion";
 import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Basic",
-    monthly: 29,
-    yearly: 23,
-    features: ["Gym Access", "Basic Equipment", "Group Classes", "Locker Room Access"],
+    name: "Starter",
+    price: 29,
+    description: "Perfect for getting started",
+    features: ["Gym floor access", "Locker room access", "2 group classes / week", "Basic fitness assessment"],
     featured: false,
   },
   {
-    name: "Pro",
-    monthly: 49,
-    yearly: 39,
+    name: "Performance",
+    price: 49,
+    description: "Our most popular plan",
     features: [
-      "Everything in Basic",
-      "All Group Classes",
-      "Personalized Plan",
-      "Priority Support",
+      "Full gym access",
+      "Unlimited group classes",
+      "1 personal session / month",
+      "Nutrition guidance",
+      "InBody composition scan",
     ],
     featured: true,
   },
   {
     name: "Elite",
-    monthly: 79,
-    yearly: 63,
+    price: 79,
+    description: "For those who want it all",
     features: [
-      "Everything in Pro",
-      "1-on-1 Personal Training",
-      "Nutrition Guidance",
-      "VIP Access & Perks",
+      "24/7 premium access",
+      "Unlimited everything",
+      "4 personal sessions / month",
+      "Custom meal plans",
+      "Priority booking",
+      "Recovery suite access",
     ],
     featured: false,
   },
 ];
 
 export function Pricing() {
-  const [annual, setAnnual] = useState(false);
-
   return (
-    <section id="pricing" className="py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollAnimate>
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-accent">
-                Pricing
-              </span>
-              <h2
-                className="mt-3 font-heading font-bold tracking-tight"
-                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
-              >
-                Simple. Transparent. Flexible.
-              </h2>
-            </div>
-
-            <div className="flex items-center gap-1 rounded-lg bg-neutral-900 p-1 self-start">
-              <button
-                type="button"
-                onClick={() => setAnnual(false)}
-                className={`rounded-md px-4 py-2 text-sm font-medium transition-all ${
-                  !annual
-                    ? "bg-blue-accent text-white"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setAnnual(true)}
-                className={`rounded-md px-4 py-2 text-sm font-medium transition-all ${
-                  annual
-                    ? "bg-blue-accent text-white"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-              >
-                Yearly{" "}
-                <span className="ml-1 rounded bg-emerald-500/20 px-1.5 py-0.5 text-xs text-emerald-400">
-                  Save 20%
-                </span>
-              </button>
-            </div>
+    <section id="pricing" className="py-28 sm:py-36">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <FadeUp>
+          <div className="text-center">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-brand">
+              Pricing
+            </span>
+            <h2 className="mt-5 font-display text-4xl tracking-wider uppercase sm:text-5xl lg:text-6xl">
+              Invest In Yourself
+            </h2>
           </div>
-        </ScrollAnimate>
+        </FadeUp>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-16 grid items-center gap-5 lg:grid-cols-3">
           {plans.map((plan, i) => (
-            <ScrollAnimate key={plan.name} delay={i * 100}>
+            <FadeUp key={plan.name} delay={i * 0.1}>
               <div
-                className={`relative rounded-2xl p-6 sm:p-8 transition-all ${
+                className={`group relative rounded-xl p-8 transition-all duration-500 sm:p-10 ${
                   plan.featured
-                    ? "bg-blue-accent/[0.06] ring-1 ring-blue-accent/40"
-                    : "bg-neutral-900 hover:bg-neutral-800/80"
+                    ? "bg-card scale-[1.02] shadow-[0_0_60px_rgba(59,130,246,0.08)] lg:py-14"
+                    : "bg-card hover:bg-[#161616]"
                 }`}
               >
-                {plan.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-accent px-4 py-1 text-xs font-bold uppercase tracking-wider text-white">
-                    Most Popular
-                  </div>
-                )}
-
-                <h3 className="text-lg font-bold font-heading">{plan.name}</h3>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-sm text-neutral-500">$</span>
-                  <span
-                    className="font-heading font-bold tabular-nums"
-                    style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
-                  >
-                    {annual ? plan.yearly : plan.monthly}
-                  </span>
-                  <span className="text-sm text-neutral-500">/mo</span>
-                </div>
-
-                <div className="mt-6 space-y-3">
-                  {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <Check size={16} className="shrink-0 text-blue-accent" />
-                      <span className="text-sm text-neutral-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <a
-                  href="#contact"
-                  className={`mt-8 block rounded-xl py-3 text-center text-sm font-semibold transition-all active:scale-[0.97] ${
+                <div
+                  className={`absolute inset-0 rounded-xl border transition-colors duration-500 ${
                     plan.featured
-                      ? "bg-blue-accent text-white hover:bg-blue-500"
-                      : "bg-neutral-800 text-white hover:bg-neutral-700"
+                      ? "border-brand/30 shadow-[inset_0_0_30px_rgba(59,130,246,0.05)]"
+                      : "border-white/[0.06] group-hover:border-brand/20"
                   }`}
-                >
-                  Get Started
-                </a>
+                />
+                <div className="relative">
+                  {plan.featured && (
+                    <span className="mb-6 inline-block rounded-full bg-brand/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">
+                      Most Popular
+                    </span>
+                  )}
+                  <h3 className="font-display text-3xl tracking-wider uppercase">
+                    {plan.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">{plan.description}</p>
+                  <div className="mt-6 flex items-baseline gap-1">
+                    <span className="font-display text-5xl tracking-wider sm:text-6xl">
+                      ${plan.price}
+                    </span>
+                    <span className="text-sm text-muted">/month</span>
+                  </div>
+                  <ul className="mt-8 space-y-3">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-center gap-3 text-sm text-muted">
+                        <Check size={16} className="shrink-0 text-brand" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#contact"
+                    className={`mt-8 block rounded-md py-4 text-center text-[13px] font-semibold uppercase tracking-wider transition-all duration-300 ${
+                      plan.featured
+                        ? "bg-brand text-white hover:bg-blue-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]"
+                        : "border border-white/[0.08] bg-white/[0.03] text-white/80 hover:bg-white/[0.06] hover:text-white"
+                    }`}
+                  >
+                    Get Started
+                  </a>
+                </div>
               </div>
-            </ScrollAnimate>
+            </FadeUp>
           ))}
         </div>
+
+        <FadeUp delay={0.3}>
+          <p className="mt-10 text-center text-sm text-muted">
+            No contracts. No hidden fees. Cancel anytime.
+          </p>
+        </FadeUp>
       </div>
     </section>
   );

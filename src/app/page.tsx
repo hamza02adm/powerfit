@@ -1,11 +1,13 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Hero } from "@/components/sections/hero";
-import { About } from "@/components/sections/about";
-import { Classes } from "@/components/sections/classes";
-import { Pricing } from "@/components/sections/pricing";
+import { TrustBar } from "@/components/sections/trust-bar";
+import { Why } from "@/components/sections/why";
+import { Programs } from "@/components/sections/programs";
+import { FeatureImage } from "@/components/sections/feature-image";
 import { Trainers } from "@/components/sections/trainers";
+import { Pricing } from "@/components/sections/pricing";
 import { Testimonials } from "@/components/sections/testimonials";
-import { Contact } from "@/components/sections/contact";
+import { CTA } from "@/components/sections/cta";
 import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
@@ -14,12 +16,14 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Classes />
-        <Pricing />
+        <TrustBar />
+        <Why />
+        <Programs />
+        <FeatureImage />
         <Trainers />
+        <Pricing />
         <Testimonials />
-        <Contact />
+        <CTA />
       </main>
       <Footer />
     </>

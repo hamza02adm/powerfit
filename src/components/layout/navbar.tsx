@@ -1,15 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Home", href: "#" },
   { label: "About", href: "#about" },
-  { label: "Classes", href: "#classes" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Programs", href: "#programs" },
   { label: "Trainers", href: "#trainers" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -18,52 +17,43 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-neutral-950/80 backdrop-blur-xl border-b border-white/5"
+          ? "bg-[#050505]/80 backdrop-blur-2xl border-b border-white/[0.06]"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between sm:h-20">
-          <a
-            href="#"
-            className="font-heading text-xl font-bold tracking-tight sm:text-2xl"
-          >
-            Power<span className="text-blue-accent">Fit</span>
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <div className="flex h-20 items-center justify-between">
+          <a href="#" className="font-display text-3xl tracking-wider">
+            POWER<span className="text-brand">FIT</span>
           </a>
 
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {links.map((link) => (
               <a
-                key={link.href + link.label}
+                key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2 text-sm text-neutral-400 transition-colors hover:text-white"
+                className="text-[13px] font-medium uppercase tracking-[0.15em] text-muted transition-colors duration-300 hover:text-white"
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-4 rounded-lg bg-blue-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-accent/25 active:scale-[0.97]"
+              className="ml-2 rounded-md bg-brand px-6 py-2.5 text-[13px] font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
             >
               Join Now
             </a>
@@ -71,7 +61,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="lg:hidden rounded-lg p-2 text-neutral-400 transition-colors hover:text-white"
+            className="lg:hidden p-2 text-muted hover:text-white transition-colors"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
           >
@@ -80,29 +70,43 @@ export function Navbar() {
         </div>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 top-16 z-40 bg-neutral-950/98 backdrop-blur-xl lg:hidden sm:top-20">
-          <div className="flex flex-col gap-1 px-4 pt-6">
-            {links.map((link) => (
-              <a
-                key={link.href + link.label}
-                href={link.href}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 top-20 z-40 bg-[#050505]/98 backdrop-blur-2xl lg:hidden"
+          >
+            <div className="flex flex-col gap-2 px-5 pt-8">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="py-4 font-display text-3xl tracking-wider text-white/80 hover:text-white transition-colors border-b border-white/[0.04]"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+              <motion.a
+                href="#contact"
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-lg text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-6 rounded-md bg-brand py-4 text-center font-display text-xl tracking-wider text-white"
               >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-4 rounded-lg bg-blue-accent px-5 py-3 text-center text-lg font-semibold text-white transition-all hover:bg-blue-500"
-            >
-              Join Now
-            </a>
-          </div>
-        </div>
-      )}
+                JOIN NOW
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

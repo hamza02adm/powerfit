@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-heading: var(--font-space-grotesk);
+  --font-display: var(--font-bebas-neue);
   --font-body: var(--font-inter);
-  --color-blue-accent: #3B82F6;
-  --color-blue-glow: #3B82F680;
+  --color-brand: #3B82F6;
+  --color-glow: #60A5FA;
+  --color-card: #111111;
+  --color-surface: #050505;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-muted: #A1A1AA;
 }
 
 html {
@@ -14,10 +18,11 @@ html {
 
 body {
   background: #050505;
-  color: #fafafa;
+  color: #ffffff;
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -26,11 +31,5 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .animate-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  html { scroll-behavior: auto; }
 }

@@ -1,83 +1,112 @@
+"use client";
+
 import Image from "next/image";
-import { ArrowRight, Play, Dumbbell, Users, HeartHandshake } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,#3B82F612_0%,transparent_60%)] z-10" />
 
       <div className="absolute inset-0">
         <Image
           src="/images/hero.png"
-          alt="Athlete training at PowerFit gym"
+          alt="Elite athlete training"
           fill
-          className="object-cover object-[75%_center] lg:object-center"
+          className="object-cover object-[75%_center]"
           priority
           sizes="100vw"
         />
       </div>
 
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-5 sm:px-8 pt-28 pb-20">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-accent mb-6">
-            Stronger Body. Stronger Mind. Better You.
-          </p>
-
-          <h1
-            className="font-heading font-bold uppercase leading-[1.05] tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand"
           >
-            Transform
-            <br />
-            Your Body,
-            <br />
-            Transform
-            <br />
-            Your{" "}
-            <span className="bg-gradient-to-r from-blue-accent to-cyan-400 bg-clip-text text-transparent">
-              Life.
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+            Elite Fitness Club
+          </motion.div>
+
+          <h1 className="mt-8 font-display uppercase leading-[0.9] tracking-wider">
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="block"
+              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
+            >
+              Built For
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="block"
+              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
+            >
+              Those Who
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="block"
+              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
+            >
+              Refuse{" "}
+              <span className="bg-gradient-to-r from-brand to-glow bg-clip-text text-transparent">
+                Average
+              </span>
+            </motion.span>
           </h1>
 
-          <p className="mt-6 max-w-lg text-neutral-400 leading-relaxed text-lg">
-            World-class training, premium equipment, and a community that pushes
-            you to be your best.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-8 max-w-md text-lg text-muted leading-relaxed"
+          >
+            Train with expert coaches, world-class equipment, and a community
+            built for results.
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="mt-10 flex flex-wrap gap-4"
+          >
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 rounded-lg bg-blue-accent px-7 py-3.5 font-semibold text-white uppercase text-sm tracking-wide transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-accent/25 active:scale-[0.97]"
+              className="group inline-flex items-center gap-2 rounded-md bg-brand px-8 py-4 text-[13px] font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]"
             >
-              Start Your Journey
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              Start Today
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
-            <button
-              type="button"
-              className="inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-neutral-300 transition-all hover:bg-white/10 hover:text-white active:scale-[0.97]"
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 rounded-md border border-white/[0.08] bg-white/[0.03] px-8 py-4 text-[13px] font-semibold uppercase tracking-wider text-white/80 transition-all duration-300 hover:bg-white/[0.06] hover:text-white"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/5">
-                <Play size={14} className="ml-0.5" />
-              </span>
-              Watch Video
-            </button>
-          </div>
-
-          <div className="mt-14 flex flex-wrap items-center gap-8 text-sm text-neutral-500">
-            <div className="flex items-center gap-2.5">
-              <Dumbbell size={18} className="text-blue-accent" />
-              <span>Expert Trainers</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <Users size={18} className="text-blue-accent" />
-              <span>Premium Equipment</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <HeartHandshake size={18} className="text-blue-accent" />
-              <span>Supportive Community</span>
-            </div>
-          </div>
+              Book Tour
+            </a>
+          </motion.div>
         </div>
+      </div>
+
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="h-12 w-7 rounded-full border border-white/10 flex items-start justify-center pt-2"
+        >
+          <div className="h-2 w-1 rounded-full bg-white/30" />
+        </motion.div>
       </div>
     </section>
   );
