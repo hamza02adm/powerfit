@@ -1,68 +1,84 @@
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { Target, Users, Trophy } from "lucide-react";
+import { Users, Dumbbell, Trophy } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: "500+", label: "Active Members", description: "Training with us daily" },
-  { icon: Target, value: "15+", label: "Expert Trainers", description: "Certified professionals" },
-  { icon: Trophy, value: "10+", label: "Years Strong", description: "Of proven results" },
+  {
+    icon: Users,
+    value: "500+",
+    label: "Members",
+    description: "Growing stronger every day",
+  },
+  {
+    icon: Dumbbell,
+    value: "15+",
+    label: "Trainers",
+    description: "Certified experts by your side",
+  },
+  {
+    icon: Trophy,
+    value: "10+",
+    label: "Years",
+    description: "Of transforming lives",
+  },
 ];
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" className="py-24 sm:py-32">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-center">
-          <ScrollAnimate>
-            <div>
-              <span className="text-sm font-semibold uppercase tracking-widest text-blue-accent">
-                About Us
-              </span>
-              <h2
-                className="mt-4 font-heading font-bold leading-tight tracking-tight"
-                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
-              >
-                More Than a Gym —{" "}
-                <span className="text-neutral-400">A Community</span>
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-neutral-400">
-                PowerFit was built on a simple belief: everyone deserves access to
-                world-class fitness. Our 15,000 sq ft facility is equipped with
-                premium gear, dedicated training zones, and recovery spaces
-                designed to help you perform at your peak.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-neutral-400">
-                Whether you&apos;re just starting out or training for competition,
-                our certified trainers and supportive community will help you
-                crush every goal you set.
-              </p>
-            </div>
-          </ScrollAnimate>
+        <ScrollAnimate>
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 sm:p-12">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16 items-center">
+              <div>
+                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-accent">
+                  About PowerFit
+                </span>
+                <h2
+                  className="mt-4 font-heading font-bold leading-tight"
+                  style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
+                >
+                  More Than a Gym.
+                  <br />
+                  <span className="text-neutral-400">We&apos;re a Movement.</span>
+                </h2>
+                <p className="mt-6 text-neutral-400 leading-relaxed">
+                  For over a decade, PowerFit has helped thousands of people
+                  discover their strength. Our mission is simple: empower you with
+                  the tools, training, and support to become the strongest version
+                  of yourself.
+                </p>
+                <a
+                  href="#classes"
+                  className="mt-8 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10"
+                >
+                  Learn More
+                </a>
+              </div>
 
-          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 lg:gap-5">
-            {stats.map((stat, i) => (
-              <ScrollAnimate key={stat.label} delay={i * 100}>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-blue-accent/20 hover:bg-white/[0.04]">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-accent/10 text-blue-accent">
-                      <stat.icon size={24} />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold font-heading sm:text-3xl">
+              <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                {stats.map((stat, i) => (
+                  <ScrollAnimate key={stat.label} delay={i * 100}>
+                    <div className="text-center">
+                      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-blue-accent">
+                        <stat.icon size={24} />
+                      </div>
+                      <div
+                        className="font-heading font-bold text-blue-accent"
+                        style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}
+                      >
                         {stat.value}
                       </div>
-                      <div className="text-sm font-medium text-white">
-                        {stat.label}
-                      </div>
-                      <div className="text-xs text-neutral-500">
+                      <div className="mt-1 text-sm font-semibold">{stat.label}</div>
+                      <div className="mt-0.5 text-xs text-neutral-500 leading-snug">
                         {stat.description}
                       </div>
                     </div>
-                  </div>
-                </div>
-              </ScrollAnimate>
-            ))}
+                  </ScrollAnimate>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </ScrollAnimate>
       </div>
     </section>
   );

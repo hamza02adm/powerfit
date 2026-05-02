@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Image from "next/image";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { MapPin, Clock, Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { MapPin, Clock, Phone, Send, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -34,84 +35,63 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#3B82F608_0%,transparent_50%)]" />
-      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollAnimate>
-          <div className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-widest text-blue-accent">
-              Contact
+          <div>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-accent">
+              Contact Us
             </span>
             <h2
-              className="mt-4 font-heading font-bold tracking-tight"
+              className="mt-3 font-heading font-bold tracking-tight"
               style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
             >
-              Ready to Start?
+              We&apos;d Love to Hear From You
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-400 text-lg">
-              Drop us a message and we&apos;ll get back to you within 24 hours.
-            </p>
           </div>
         </ScrollAnimate>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_380px] lg:gap-16">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12">
           <ScrollAnimate>
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="hidden">
                 <input type="text" name="website" tabIndex={-1} autoComplete="off" />
               </div>
 
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Name
-                </label>
+              <div className="grid gap-4 sm:grid-cols-2">
                 <input
-                  id="name"
                   name="name"
                   type="text"
                   required
-                  placeholder="John Doe"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
+                  placeholder="Your Name"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
                 />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Email
-                </label>
                 <input
-                  id="email"
                   name="email"
                   type="email"
                   required
-                  placeholder="john@example.com"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
+                  placeholder="Your Email"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent"
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Tell us about your fitness goals..."
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent resize-none"
-                />
-              </div>
+              <textarea
+                name="message"
+                required
+                rows={5}
+                placeholder="Your Message"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 transition-colors focus:border-blue-accent focus:outline-none focus:ring-1 focus:ring-blue-accent resize-none"
+              />
 
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-accent px-8 py-3.5 font-semibold text-white transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-accent/25 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-accent px-7 py-3 text-sm font-semibold text-white uppercase tracking-wide transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-accent/25 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status === "sending" && <Loader2 size={18} className="animate-spin" />}
-                {status === "sent" && <CheckCircle2 size={18} />}
-                {status === "idle" && <Send size={18} />}
-                {status === "error" && <Send size={18} />}
+                {status === "sending" && <Loader2 size={16} className="animate-spin" />}
+                {status === "sent" && <CheckCircle2 size={16} />}
+                {status === "idle" && <Send size={16} />}
+                {status === "error" && <Send size={16} />}
                 {status === "sending"
                   ? "Sending..."
                   : status === "sent"
@@ -119,6 +99,9 @@ export function Contact() {
                     : status === "error"
                       ? "Try Again"
                       : "Send Message"}
+                {(status === "idle" || status === "error") && (
+                  <ArrowRight size={14} />
+                )}
               </button>
 
               {status === "error" && (
@@ -129,55 +112,58 @@ export function Contact() {
             </form>
           </ScrollAnimate>
 
-          <ScrollAnimate delay={150}>
-            <div className="space-y-6">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-accent/10 text-blue-accent">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold font-heading">Location</h3>
-                    <p className="mt-1 text-sm text-neutral-400 leading-relaxed">
-                      123 Fitness Avenue<br />
-                      Downtown District<br />
-                      New York, NY 10001
-                    </p>
+          <ScrollAnimate delay={100}>
+            <div className="space-y-5">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <div className="flex items-start gap-3">
+                    <MapPin size={18} className="mt-0.5 shrink-0 text-blue-accent" />
+                    <div>
+                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Address</h3>
+                      <p className="mt-1.5 text-sm text-neutral-400 leading-relaxed">
+                        123 PowerFit Way<br />New York, NY 10001
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-accent/10 text-blue-accent">
-                    <Clock size={20} />
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <div className="flex items-start gap-3">
+                    <Clock size={18} className="mt-0.5 shrink-0 text-blue-accent" />
+                    <div>
+                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Hours</h3>
+                      <div className="mt-1.5 space-y-0.5 text-sm text-neutral-400">
+                        <p>Mon – Fri: 5:00 AM – 10:00 PM</p>
+                        <p>Sat – Sun: 7:00 AM – 8:00 PM</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold font-heading">Hours</h3>
-                    <div className="mt-1 space-y-1 text-sm text-neutral-400">
-                      <p>Mon — Fri: 5:00 AM – 11:00 PM</p>
-                      <p>Saturday: 6:00 AM – 10:00 PM</p>
-                      <p>Sunday: 7:00 AM – 9:00 PM</p>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5 sm:col-span-2 lg:col-span-1 xl:col-span-2">
+                  <div className="flex items-start gap-3">
+                    <Phone size={18} className="mt-0.5 shrink-0 text-blue-accent" />
+                    <div>
+                      <h3 className="text-sm font-bold text-blue-accent uppercase tracking-wider">Phone</h3>
+                      <a
+                        href="tel:+12125550123"
+                        className="mt-1.5 block text-sm text-neutral-400 transition-colors hover:text-white"
+                      >
+                        (212) 555-0123
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-accent/10 text-blue-accent">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold font-heading">Email</h3>
-                    <a
-                      href="mailto:hello@powerfit.com"
-                      className="mt-1 text-sm text-neutral-400 transition-colors hover:text-blue-accent"
-                    >
-                      hello@powerfit.com
-                    </a>
-                  </div>
-                </div>
+              <div className="relative overflow-hidden rounded-2xl aspect-[16/9]">
+                <Image
+                  src="/images/gym-interior.png"
+                  alt="PowerFit gym interior"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             </div>
           </ScrollAnimate>

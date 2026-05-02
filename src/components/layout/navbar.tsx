@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
+  { label: "Home", href: "#" },
   { label: "About", href: "#about" },
   { label: "Classes", href: "#classes" },
   { label: "Pricing", href: "#pricing" },
@@ -53,7 +54,7 @@ export function Navbar() {
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
               <a
-                key={link.href}
+                key={link.href + link.label}
                 href={link.href}
                 className="rounded-lg px-3 py-2 text-sm text-neutral-400 transition-colors hover:text-white"
               >
@@ -84,7 +85,7 @@ export function Navbar() {
           <div className="flex flex-col gap-1 px-4 pt-6">
             {links.map((link) => (
               <a
-                key={link.href}
+                key={link.href + link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-4 py-3 text-lg text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"

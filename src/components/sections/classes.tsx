@@ -1,73 +1,84 @@
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import { Dumbbell, Flame, Swords, Leaf, HeartPulse, UserRound } from "lucide-react";
+import { Dumbbell, Flame, Swords, Leaf, HeartPulse, UserRound, ArrowRight } from "lucide-react";
 
 const classes = [
   {
     icon: Dumbbell,
     name: "Weightlifting",
-    description: "Build raw strength with structured progressive overload programs and Olympic lifting techniques.",
+    description: "Build strength and muscle with focused lifting programs.",
   },
   {
     icon: Flame,
     name: "CrossFit",
-    description: "High-intensity functional training that combines cardio, gymnastics, and weightlifting.",
+    description: "High-intensity functional workouts for all levels.",
   },
   {
     icon: Swords,
     name: "Boxing",
-    description: "Learn proper technique while getting an incredible full-body cardio workout.",
+    description: "Improve technique, strength, and confidence.",
   },
   {
     icon: Leaf,
     name: "Yoga",
-    description: "Improve flexibility, balance, and mental clarity with guided flow and recovery sessions.",
+    description: "Increase flexibility, reduce stress, and find balance.",
   },
   {
     icon: HeartPulse,
     name: "Cardio",
-    description: "Torch calories and boost endurance with HIIT, spin, and circuit training classes.",
+    description: "Boost endurance with exciting cardio sessions.",
   },
   {
     icon: UserRound,
     name: "Personal Training",
-    description: "One-on-one sessions tailored to your goals with a dedicated certified trainer.",
+    description: "One-on-one coaching tailored to your goals.",
   },
 ];
 
 export function Classes() {
   return (
-    <section id="classes" className="relative py-24 sm:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#3B82F608_0%,transparent_50%)]" />
-      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="classes" className="py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollAnimate>
-          <div className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-widest text-blue-accent">
-              Our Classes
-            </span>
-            <h2
-              className="mt-4 font-heading font-bold tracking-tight"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-accent">
+                Classes
+              </span>
+              <h2
+                className="mt-3 font-heading font-bold tracking-tight"
+                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}
+              >
+                Find What Moves You
+              </h2>
+            </div>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white shrink-0"
             >
-              Find Your Perfect Workout
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-neutral-400 text-lg">
-              From high-intensity training to mindful recovery — we have a class
-              for every fitness level and goal.
-            </p>
+              View All Classes <ArrowRight size={16} />
+            </a>
           </div>
         </ScrollAnimate>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 sm:gap-4">
           {classes.map((cls, i) => (
-            <ScrollAnimate key={cls.name} delay={i * 80}>
-              <div className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-blue-accent/20 hover:bg-white/[0.04] sm:p-8">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-accent/10 text-blue-accent transition-colors group-hover:bg-blue-accent/20">
-                  <cls.icon size={28} />
+            <ScrollAnimate key={cls.name} delay={i * 60}>
+              <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-blue-accent/20 hover:bg-white/[0.04] sm:p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-accent/10 text-blue-accent transition-colors group-hover:bg-blue-accent/20">
+                  <cls.icon size={24} />
                 </div>
-                <h3 className="mt-5 text-xl font-bold font-heading">{cls.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-400">
+                <h3 className="mt-4 text-sm font-bold font-heading sm:text-base">
+                  {cls.name}
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-neutral-500 sm:text-sm">
                   {cls.description}
                 </p>
+                <div className="mt-4">
+                  <ArrowRight
+                    size={16}
+                    className="text-blue-accent opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1"
+                  />
+                </div>
               </div>
             </ScrollAnimate>
           ))}
