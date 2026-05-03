@@ -3,12 +3,13 @@
 @theme inline {
   --font-display: var(--font-bebas-neue);
   --font-body: var(--font-inter);
-  --color-brand: #3B82F6;
-  --color-glow: #60A5FA;
+  --color-ivory: #E8E4DD;
+  --color-bone: #C8C2B8;
+  --color-surface: #0A0A0A;
   --color-card: #111111;
-  --color-surface: #050505;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-muted: #A1A1AA;
+  --color-card-hover: #161616;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-muted: #6B6B6B;
 }
 
 html {
@@ -26,8 +27,40 @@ body {
 }
 
 ::selection {
-  background: #3B82F640;
+  background: rgba(232, 228, 221, 0.15);
   color: #fff;
+}
+
+/* Custom scrollbar — thin, dark, luxury */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Horizontal rule — editorial divider */
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Smooth image loads */
+img {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Account for fixed navbar when scrolling to anchor links */
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

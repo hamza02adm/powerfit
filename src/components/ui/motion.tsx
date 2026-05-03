@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect } from "react";
 
 export function FadeUp({
@@ -13,14 +13,14 @@ export function FadeUp({
   className?: string;
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -28,7 +28,35 @@ export function FadeUp({
   );
 }
 
-export function StaggerText({
+export function SlideIn({
+  children,
+  delay = 0,
+  direction = "left",
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: "left" | "right";
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const x = direction === "left" ? -80 : 80;
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function RevealText({
   text,
   className,
   delay = 0,
@@ -44,21 +72,47 @@ export function StaggerText({
   return (
     <span ref={ref} className={className}>
       {words.map((word, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.5,
-            delay: delay + i * 0.08,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="inline-block mr-[0.25em]"
-        >
-          {word}
-        </motion.span>
+        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+          <motion.span
+            initial={{ y: "110%" }}
+            animate={inView ? { y: "0%" } : {}}
+            transition={{
+              duration: 0.8,
+              delay: delay + i * 0.06,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="inline-block"
+          >
+            {word}
+          </motion.span>
+        </span>
       ))}
     </span>
+  );
+}
+
+export function ParallaxImage({
+  children,
+  speed = 0.3,
+  className,
+}: {
+  children: React.ReactNode;
+  speed?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <div ref={ref} className={`overflow-hidden ${className || ""}`}>
+      <motion.div style={{ y }} className="h-full w-full">
+        {children}
+      </motion.div>
+    </div>
   );
 }
 
@@ -78,7 +132,7 @@ export function Counter({
 
   useEffect(() => {
     if (inView) {
-      animate(count, target, { duration: 2, ease: [0.22, 1, 0.36, 1] });
+      animate(count, target, { duration: 2.5, ease: [0.16, 1, 0.3, 1] });
     }
   }, [inView, count, target]);
 
@@ -90,4 +144,4 @@ export function Counter({
   );
 }
 
-export { motion, useInView };
+export { motion, useInView, useScroll, useTransform };

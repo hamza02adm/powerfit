@@ -19,15 +19,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://powerfit-ten.vercel.app"),
   title: {
-    default: "PowerFit — Elite Fitness Club",
+    default: "PowerFit — Elite Fitness",
     template: "%s | PowerFit",
   },
   description:
-    "Train with expert coaches, world-class equipment, and a community built for results. Join 500+ members at PowerFit.",
+    "Not a gym. A standard. Elite coaching, brutal training, real results. By application only.",
   openGraph: {
-    title: "PowerFit — Elite Fitness Club",
+    title: "PowerFit — Elite Fitness",
     description:
-      "Train with expert coaches, world-class equipment, and a community built for results.",
+      "Not a gym. A standard. Elite coaching, brutal training, real results.",
     url: "https://powerfit-ten.vercel.app",
     siteName: "PowerFit",
     locale: "en_US",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PowerFit — Elite Fitness Club",
+    title: "PowerFit — Elite Fitness",
     description:
-      "Train with expert coaches, world-class equipment, and a community built for results.",
+      "Not a gym. A standard. Elite coaching, brutal training, real results.",
   },
   robots: { index: true, follow: true },
 };

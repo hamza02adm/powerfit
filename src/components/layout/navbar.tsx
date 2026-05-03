@@ -2,15 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Trainers", href: "#trainers" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
-];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -27,68 +18,88 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  const links = [
+    { label: "Membership", href: "#membership" },
+    { label: "Coaches", href: "#coaches" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-[#050505]/80 backdrop-blur-2xl border-b border-white/[0.06]"
+          ? "bg-[#050505]/90 backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-        <div className="flex h-20 items-center justify-between">
-          <a href="#" className="font-display text-3xl tracking-wider">
-            POWER<span className="text-brand">FIT</span>
+      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-10 lg:px-16">
+        <div className="flex h-20 items-center justify-between lg:h-24">
+          {/* Logo — raw, uppercase, no color gimmicks */}
+          <a href="#" className="font-display text-2xl tracking-[0.3em] uppercase">
+            PowerFit
           </a>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          {/* Desktop nav — minimal links */}
+          <div className="hidden items-center gap-12 lg:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] font-medium uppercase tracking-[0.15em] text-muted transition-colors duration-300 hover:text-white"
+                className="text-[11px] font-medium uppercase tracking-[0.25em] text-white/40 transition-colors duration-500 hover:text-white"
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-2 rounded-md bg-brand px-6 py-2.5 text-[13px] font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+              className="border border-white/20 px-8 py-3 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-all duration-500 hover:bg-white hover:text-black"
             >
-              Join Now
+              Apply
             </a>
           </div>
 
+          {/* Mobile toggle — two lines, not a hamburger icon */}
           <button
             type="button"
-            className="lg:hidden p-2 text-muted hover:text-white transition-colors"
+            className="lg:hidden flex flex-col gap-[6px] p-2 group"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            <motion.span
+              animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
+              className="block h-[1px] w-6 bg-white origin-center"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            />
+            <motion.span
+              animate={open ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
+              className="block h-[1px] w-6 bg-white origin-center"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            />
           </button>
         </div>
       </div>
 
+      {/* Fullscreen mobile menu — editorial, not template */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-20 z-40 bg-[#050505]/98 backdrop-blur-2xl lg:hidden"
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 top-0 z-40 bg-[#050505] lg:hidden flex flex-col justify-center"
           >
-            <div className="flex flex-col gap-2 px-5 pt-8">
+            <div className="px-6 sm:px-10">
               {links.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="py-4 font-display text-3xl tracking-wider text-white/80 hover:text-white transition-colors border-b border-white/[0.04]"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="block py-6 font-display text-[clamp(3rem,10vw,5rem)] tracking-[0.15em] uppercase text-white/80 hover:text-white transition-colors border-b border-white/[0.04]"
                 >
                   {link.label}
                 </motion.a>
@@ -96,12 +107,12 @@ export function Navbar() {
               <motion.a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-6 rounded-md bg-brand py-4 text-center font-display text-xl tracking-wider text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="mt-12 inline-block border border-white/20 px-10 py-5 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-all duration-500 hover:bg-white hover:text-black"
               >
-                JOIN NOW
+                Apply Now
               </motion.a>
             </div>
           </motion.div>

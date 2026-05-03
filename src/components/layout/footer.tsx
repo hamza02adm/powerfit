@@ -1,101 +1,79 @@
 "use client";
 
-const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Trainers", href: "#trainers" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-];
-
-function XIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="5" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function YoutubeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-    </svg>
-  );
-}
-
-const socials = [
-  { icon: XIcon, href: "#", label: "X" },
-  { icon: InstagramIcon, href: "#", label: "Instagram" },
-  { icon: YoutubeIcon, href: "#", label: "YouTube" },
-];
-
 export function Footer() {
   return (
-    <footer id="contact" className="border-t border-white/[0.06]">
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid gap-12 sm:grid-cols-3">
-          <div>
-            <a href="#" className="font-display text-3xl tracking-wider">
-              POWER<span className="text-brand">FIT</span>
+    <footer id="contact" className="border-t border-white/[0.04]">
+      <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
+        {/* Main footer */}
+        <div className="grid lg:grid-cols-12 gap-16 py-20 sm:py-28">
+          {/* Brand */}
+          <div className="lg:col-span-5">
+            <a href="#" className="font-display text-2xl tracking-[0.3em] uppercase">
+              PowerFit
             </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-              Elite fitness for those who refuse average. Train hard. Stay consistent. See results.
+            <p className="mt-6 max-w-sm text-[13px] leading-[1.8] text-white/25 font-light">
+              Elite fitness for those who refuse to settle.
+              No shortcuts. No compromises. Just results.
             </p>
           </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Quick Links
-            </h4>
-            <ul className="mt-4 space-y-3">
-              {footerLinks.map((link) => (
-                <li key={link.href + link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-muted transition-colors duration-300 hover:text-white"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Contact */}
+          <div className="lg:col-span-3">
+            <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/20">
+              Contact
+            </span>
+            <div className="mt-6 space-y-3">
+              <a href="mailto:hello@powerfit.com" className="block text-[13px] text-white/35 hover:text-white transition-colors duration-500 font-light">
+                hello@powerfit.com
+              </a>
+              <p className="text-[13px] text-white/35 font-light">
+                +1 (555) 000-0000
+              </p>
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Connect
-            </h4>
-            <div className="mt-4 flex gap-4">
-              {socials.map((s) => (
+          {/* Socials */}
+          <div className="lg:col-span-2">
+            <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/20">
+              Social
+            </span>
+            <div className="mt-6 space-y-3">
+              {["Instagram", "X / Twitter", "YouTube"].map((s) => (
                 <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.06] text-muted transition-all duration-300 hover:border-brand/30 hover:text-white"
+                  key={s}
+                  href="#"
+                  className="block text-[13px] text-white/35 hover:text-white transition-colors duration-500 font-light"
                 >
-                  <s.icon />
+                  {s}
                 </a>
               ))}
             </div>
-            <p className="mt-6 text-sm text-muted">hello@powerfit.com</p>
-            <p className="mt-1 text-sm text-muted">+1 (555) 000-0000</p>
+          </div>
+
+          {/* Legal */}
+          <div className="lg:col-span-2">
+            <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/20">
+              Legal
+            </span>
+            <div className="mt-6 space-y-3">
+              <a href="/privacy" className="block text-[13px] text-white/35 hover:text-white transition-colors duration-500 font-light">
+                Privacy
+              </a>
+              <a href="/terms" className="block text-[13px] text-white/35 hover:text-white transition-colors duration-500 font-light">
+                Terms
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/[0.06] pt-8 text-center text-xs text-muted">
-          &copy; {new Date().getFullYear()} PowerFit. All rights reserved.
+        {/* Bottom bar */}
+        <div className="border-t border-white/[0.04] py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/10">
+            &copy; {new Date().getFullYear()} PowerFit. All rights reserved.
+          </p>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/10">
+            Built for the obsessed.
+          </p>
         </div>
       </div>
     </footer>

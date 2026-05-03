@@ -1,13 +1,9 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Hero } from "@/components/sections/hero";
-import { TrustBar } from "@/components/sections/trust-bar";
-import { Why } from "@/components/sections/why";
-import { Programs } from "@/components/sections/programs";
-import { FeatureImage } from "@/components/sections/feature-image";
-import { Trainers } from "@/components/sections/trainers";
-import { Pricing } from "@/components/sections/pricing";
-import { Testimonials } from "@/components/sections/testimonials";
-import { CTA } from "@/components/sections/cta";
+import { Statement } from "@/components/sections/statement";
+import { Membership } from "@/components/sections/membership";
+import { Coaches } from "@/components/sections/coaches";
+import { FinalCTA } from "@/components/sections/final-cta";
 import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
@@ -16,14 +12,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <TrustBar />
-        <Why />
-        <Programs />
-        <FeatureImage />
-        <Trainers />
-        <Pricing />
-        <Testimonials />
-        <CTA />
+        <Statement />
+        <Membership />
+        <Coaches />
+        <FinalCTA />
       </main>
       <Footer />
     </>

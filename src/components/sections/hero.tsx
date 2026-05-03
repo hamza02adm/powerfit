@@ -2,112 +2,130 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,#3B82F612_0%,transparent_60%)] z-10" />
-
+    <section className="relative h-[100dvh] min-h-[700px] flex flex-col overflow-hidden">
+      {/* Background image — fullscreen cinematic */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero.png"
-          alt="Elite athlete training"
+          src="/images/hero-cinematic.png"
+          alt="Elite athlete in dramatic lighting"
           fill
-          className="object-cover object-[75%_center]"
+          className="object-cover object-center"
           priority
           sizes="100vw"
+          quality={90}
         />
       </div>
 
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-5 sm:px-8 pt-28 pb-20">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-brand"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            Elite Fitness Club
-          </motion.div>
+      {/* Overlay — heavy vignette, not a flat gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-[#050505]/30 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/50 to-transparent z-10" />
 
-          <h1 className="mt-8 font-display uppercase leading-[0.9] tracking-wider">
-            <motion.span
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-            >
-              Built For
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-            >
-              Those Who
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-            >
-              Refuse{" "}
-              <span className="bg-gradient-to-r from-brand to-glow bg-clip-text text-transparent">
-                Average
-              </span>
-            </motion.span>
-          </h1>
+      {/* Spacer — pushes content to bottom, prevents navbar overlap */}
+      <div className="flex-1 min-h-[120px]" />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8 max-w-md text-lg text-muted leading-relaxed"
-          >
-            Train with expert coaches, world-class equipment, and a community
-            built for results.
-          </motion.p>
+      {/* Content — bottom-aligned, editorial */}
+      <div className="relative z-20 w-full pb-16 sm:pb-24 lg:pb-28">
+        <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
+          <div className="max-w-4xl">
+            {/* Main headline — massive, stacked */}
+            <h1 className="font-display uppercase leading-[0.85] tracking-[0.04em]">
+              <div className="overflow-hidden">
+                <motion.span
+                  initial={{ y: "120%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                  style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
+                >
+                  Your Body
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span
+                  initial={{ y: "120%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                  style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
+                >
+                  Is Not
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span
+                  initial={{ y: "120%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="block text-white/20"
+                  style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}
+                >
+                  A Temple.
+                </motion.span>
+              </div>
+            </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 rounded-md bg-brand px-8 py-4 text-[13px] font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]"
+            {/* Tag — below headline */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="mt-8 text-[10px] font-medium uppercase tracking-[0.5em] text-white/25"
             >
-              Start Today
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 rounded-md border border-white/[0.08] bg-white/[0.03] px-8 py-4 text-[13px] font-semibold uppercase tracking-wider text-white/80 transition-all duration-300 hover:bg-white/[0.06] hover:text-white"
+              Est. 2024 — Elite Fitness
+            </motion.div>
+
+            {/* Subline — raw, provocative */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="mt-5 max-w-lg text-[15px] sm:text-base leading-relaxed text-white/40 font-light"
             >
-              Book Tour
-            </a>
-          </motion.div>
+              It&apos;s a weapon. And we help you sharpen it.
+            </motion.p>
+
+            {/* CTA — minimal, high-contrast */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              className="mt-12 flex flex-wrap items-center gap-8"
+            >
+              <a
+                href="#membership"
+                className="group relative inline-flex items-center border border-white px-10 py-5 text-[11px] font-medium uppercase tracking-[0.3em] text-white transition-all duration-500 hover:bg-white hover:text-black"
+              >
+                View Membership
+                <span className="ml-4 inline-block w-6 h-[1px] bg-white transition-all duration-500 group-hover:w-10 group-hover:bg-black" />
+              </a>
+              <a
+                href="#coaches"
+                className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/30 transition-colors duration-500 hover:text-white"
+              >
+                Meet The Team
+              </a>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+      {/* Scroll indicator — single line */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        <span className="text-[9px] uppercase tracking-[0.4em] text-white/20">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ height: ["16px", "32px", "16px"] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="h-12 w-7 rounded-full border border-white/10 flex items-start justify-center pt-2"
-        >
-          <div className="h-2 w-1 rounded-full bg-white/30" />
-        </motion.div>
-      </div>
+          className="w-[1px] bg-white/20"
+        />
+      </motion.div>
     </section>
   );
 }

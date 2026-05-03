@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -8,7 +9,7 @@ export function CookieConsent() {
   useEffect(() => {
     const consent = document.cookie.includes("cookie_consent=");
     if (!consent) {
-      const timer = setTimeout(() => setVisible(true), 1500);
+      const timer = setTimeout(() => setVisible(true), 2000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -19,36 +20,40 @@ export function CookieConsent() {
     setVisible(false);
   }
 
-  if (!visible) return null;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/5 bg-neutral-950/95 backdrop-blur-xl p-4 sm:p-6">
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-neutral-400 max-w-xl">
-          We use cookies to improve your experience. By continuing to use this
-          site, you agree to our{" "}
-          <a href="/privacy" className="text-blue-accent underline underline-offset-2">
-            Privacy Policy
-          </a>
-          .
-        </p>
-        <div className="flex gap-3 shrink-0">
-          <button
-            type="button"
-            onClick={() => respond(false)}
-            className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-300 transition-colors hover:bg-white/10"
-          >
-            Decline
-          </button>
-          <button
-            type="button"
-            onClick={() => respond(true)}
-            className="rounded-lg bg-blue-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
-          >
-            Accept
-          </button>
-        </div>
-      </div>
-    </div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed bottom-6 left-6 right-6 sm:left-auto sm:right-8 sm:bottom-8 sm:max-w-sm z-50 bg-[#0e0e0e] border border-white/[0.06] p-6"
+        >
+          <p className="text-[12px] text-white/30 leading-[1.7] font-light">
+            We use cookies for analytics and experience.{" "}
+            <a href="/privacy" className="text-white/50 underline underline-offset-2 hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+          </p>
+          <div className="flex gap-3 mt-5">
+            <button
+              type="button"
+              onClick={() => respond(false)}
+              className="text-[10px] uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors"
+            >
+              Decline
+            </button>
+            <button
+              type="button"
+              onClick={() => respond(true)}
+              className="bg-white text-black px-5 py-2 text-[10px] uppercase tracking-[0.2em] font-medium hover:bg-white/90 transition-colors"
+            >
+              Accept
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
